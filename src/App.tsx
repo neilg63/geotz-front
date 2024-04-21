@@ -148,7 +148,7 @@ function App() {
           <span className="mid">Time</span>
           <span className="orange">Zone</span>
         </h1>
-        <Tooltip title={currentGeo.toString()}>
+        <Tooltip title={currentGeo.toDisplay()}>
         <h3>
             <span className='date'>{currentDtDisplay.date}</span><time className='hours-minutes'>{currentDtDisplay.time}</time><em className='seconds'>{currentDtDisplay.seconds}</em>
         </h3>

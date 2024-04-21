@@ -147,7 +147,7 @@ export class PlaceInfo {
 
   constructor(place: any = null) {
     if (place instanceof Object) {
-      const { lat, lng, name, adminName, region, cc, countryName, zoneName } = place;
+      const { lat, lng, name, adminName, region, cc, countryName, zoneName, text } = place;
       if (typeof lat === 'number') {
         this.lat = lat;
         if (typeof lng === 'number') {
@@ -157,12 +157,20 @@ export class PlaceInfo {
       }
       if (notEmptyString(name)) {
         this.locality = name;
+      } else if (notEmptyString(text)) {
+        const parts = text.split(",");
+        this.locality = parts[0];
+        if (parts.length > 1) {
+          const subParts = parts[1].split("(");
+          this.adminName = subParts[0].trim();
+          if (subParts.length > 1) {
+            this.cc = subParts[1].replace(')', '');
+            this.countryName = this.cc;
+          }
+        }
       }
       if (notEmptyString(adminName)) {
         this.adminName = adminName;
-      }
-      if (notEmptyString(region)) {
-        this.region = region;
       }
       if (notEmptyString(region)) {
         this.region = region;
