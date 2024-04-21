@@ -1,3 +1,13 @@
+body {
+  background-image: url("/public/globe.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-attachment: fixed;
+  background-position: center center;
+  background-color: white;
+}
+
+
 .App {
   text-align: center;
 }
@@ -165,7 +175,10 @@
 
 .main-section {
   margin: 0 auto;
-  max-width: 80em;
+  max-width: 24em;
+  padding: 0 0.5em;
+  background-color: rgba(255,255,255, 0.66667);
+  min-height: calc(100vh - 5rem);
 }
 
 .main-section h4,

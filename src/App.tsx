@@ -52,6 +52,9 @@ function App() {
     if (valid) {
       const keys = Object.keys(inData);
       const geo = new GeoLoc(inData);
+      if (keys.includes('lat') && keys.includes('lng')) {
+        setGeo(geo);
+      }
       if (keys.includes('ts')) {
         if (typeof inData.ts === 'number') {
           setTs(inData.ts)
