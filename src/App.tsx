@@ -157,9 +157,7 @@ function App() {
       <main className="main-section">
 
         <section>
-          {infoLoaded && <>
-            <LocationDisplay info={placeInfo} />
-          </>}
+          <LocationDisplay info={placeInfo} />
           <PlaceFinder onChange={(row: PlaceRow) => loadLocation(row)} current={currentPlaceInfo}/>
           <Converter onUpdate={(row: any = null) => loadLocation(row)} geo={geo} />
           {infoLoaded && <>

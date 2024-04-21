@@ -4,24 +4,24 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Grid from '@mui/material/Grid';
-import { debounce } from '@mui/material/utils';
+//import { debounce } from '@mui/material/utils';
 import { searchLocation } from '../api/fetch';
 import { PlaceRow } from '../api/interfaces';
 import { PlaceInfo } from '../api/models';
 
 export default function PlaceFinder({onChange, current}: {onChange: Function, current: PlaceInfo}) {
   const [value, setValue] = React.useState<PlaceRow | null>(null);
-  const [inputValue, setInputValue] = React.useState('');
   const [options, setOptions] = React.useState<readonly PlaceRow[]>([]);
 
 
-
+/* 
   const fetchOptions = React.useMemo(
     () =>
       debounce(
         (input) => {
           const inputText = typeof input === 'string' ? input.trim() : ''
           if (inputText.length > 1) {
+            console.log(input)
             searchLocation(input).then((results:PlaceRow[]) => {
               
               if (results instanceof Array) {
@@ -30,11 +30,22 @@ export default function PlaceFinder({onChange, current}: {onChange: Function, cu
             })
           }
         },
-        750,
+        250,
       ),
     [],
   );
-
+ */
+  const fetchOptions = (input: any = null) => {
+    const inputText = typeof input === 'string' ? input.trim() : ''
+    if (inputText.length > 1) {
+      console.log(input)
+      searchLocation(input).then((results:PlaceRow[]) => {
+        if (results instanceof Array) {
+          setOptions(results)
+        }
+      })
+    }
+  }
   return (
     <Autocomplete
       id="place-name-search"
@@ -50,12 +61,16 @@ export default function PlaceFinder({onChange, current}: {onChange: Function, cu
       value={value}
       noOptionsText="No places found"
       onChange={(event: any, newValue: PlaceRow | null) => {
-        setOptions(newValue ? [newValue, ...options] : options);
-        setValue(newValue);
-        onChange(newValue);
+        //setOptions(newValue ? [newValue, ...options] : options);
+        if (event) {
+          setOptions([]);
+        }
+        if (newValue) {
+          setValue(newValue);
+          onChange(newValue);
+        }
       }}
-      onInputChange={(event, newInputValue) => {
-        setInputValue(newInputValue);
+      onInputChange={(_event, newInputValue) => {
         fetchOptions(newInputValue);
       }}
       renderInput={(params) => (
