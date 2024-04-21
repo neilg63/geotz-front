@@ -151,7 +151,7 @@ export default function Converter({onUpdate, geo}: {onUpdate: Function, geo: Geo
     setJd(unixTimeToJul5(ts))
   },[]);
   return (
-    <Stack spacing={3} sx={{ width: '24em' }}>
+    <Stack spacing={3} sx={{ width: '21rem' }}>
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={localeKey}>
         <DemoContainer components={['MobileDateTimePicker']}>
           <MobileDateTimePicker  label="Pick a date and time" value={dayjs(currDt)} onChange={(newValue) => applyNewDateTime(newValue)} />
