@@ -198,6 +198,10 @@ body {
   margin-block-start: 0;
   margin-block-end: 0;
   width: 100%;
+}
+
+.main-section .inner h4,
+.main-section .inner h3 {
   white-space: nowrap;
   user-select: none;
   color: #000066;

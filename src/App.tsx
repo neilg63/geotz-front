@@ -158,19 +158,17 @@ function App() {
         </Tooltip>
       </header>
       <main className="main-section">
-
-        <section>
+        
           <LocationDisplay info={placeInfo} />
           <PlaceFinder onChange={(row: PlaceRow) => loadLocation(row)} current={currentPlaceInfo}/>
           <Converter onUpdate={(row: any = null) => loadLocation(row)} geo={geo} />
-          {infoLoaded && <>
+          {infoLoaded && <section className='inner'>
             <TimeInfo info={timeInfo} ts={ts} isCurrent={isCurrent} />
             <AstroDisplay info={astro} />
             {extraLoaded && <>
               <BodiesDisplay info={bodySet} />
             </>}
-          </>}
-        </section>
+        </section>}
       </main>
     </div>
   );
