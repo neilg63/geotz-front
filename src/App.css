@@ -2,6 +2,67 @@
   text-align: center;
 }
 
+.App header h1 {
+  margin: 0 auto;
+  padding: 0;
+  font-size: 1.5em;
+  user-select: none;
+  width: 100%;
+  border-bottom: solid 3px orange;
+}
+.App header h1 span {
+  display: inline-block;
+  position: relative;
+}
+
+.App header h1 .green {
+  color: green;
+}
+
+.App header h1 .mid {
+  transform: scaleX(0.9) skew(-10deg);
+}
+
+.App header h1 .orange {
+  color: orange;
+}
+
+.App header h3 {
+  margin-top: 0;
+  user-select: none;
+  white-space: nowrap;
+  font-size: 1.125em;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.App header h3 time,
+.App header h3 em,
+.App header h3 span {
+  display: inline-block;
+  position: relative;
+}
+
+.App header h3 time {
+  width: 3em;
+  text-align: right;
+}
+
+.App header h3 .date {
+  margin-right: 0.5em;
+  color: cyan;
+  transform: scale(0.9);
+}
+
+.App header h3 .seconds {
+  text-align: left;
+  width: 1.5em;
+}
+
+.App header h3 .seconds::before {
+  content: ":";
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -15,12 +76,12 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height:4em;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(0.5em + 2vmin);
   color: white;
 }
 
@@ -35,4 +96,334 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.labelled-list {
+  list-style: none;
+}
+
+.labelled-list li {
+  padding: 0.25em 0; 
+}
+
+.labelled-list li span,
+.labelled-list li strong,
+.labelled-list li em {
+  display: inline-block; 
+}
+
+.labelled-list li > strong:first-child {
+  width: 8em;
+  margin-right: 0.25em;
+}
+
+.twin-grid {
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  width: 24em;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.twin-grid dt {
+  text-align: right;
+  font-size: 0.8em;
+  max-width: 10rem;
+  margin-right: 0.375em;
+}
+
+.twin-grid dd {
+  text-align: left;
+  margin-inline-start: 0;
+}
+
+.twin-grid span,
+.time-info-display em {
+  display: inline-block;
+}
+
+.twin-grid span {
+  margin-right: 0.5em;
+}
+
+.time-info-display .decimal-row span {
+  margin-right: 0;
+}
+
+.time-info-display .decimal-row .dot {
+  transform: scale(2) translateY(-0.25em);
+  padding: 0 0.125em;
+}
+
+.twin-grid em:last-child {
+  margin-left: 1em;
+}
+
+.twin-grid span:last-child {
+  margin-right: 0;
+}
+
+.main-section {
+  margin: 0 auto;
+  max-width: 80em;
+}
+
+.main-section h4,
+.main-section h3 {
+  margin: 0 auto;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.main-section h4 {
+  padding: 0.5em 0 0.125em 0;
+}
+
+.main-section h3 {
+  padding: 0.75em 0 0.25em 0;
+}
+
+.location-display .coords {
+  margin: 0 auto;
+  display: block;
+  margin-top: -0.125em;
+  margin-bottom: 0.375em;
+  user-select: none;
+}
+
+.location-display .coords span,
+.location-display .coords strong {
+  position: relative;
+  display: inline-block;
+}
+
+.location-display .coords span.latitude {
+  margin-right: 1em;
+}
+
+.location-display .coords > span > span {
+  margin: 0 .125em;
+}
+
+.location-display .coords .polarity {
+  transform: scale(0.9) translateY(-10%);
+}
+
+.location-display .coords .polarity::after {
+  display: inline-block;
+  position: relative;
+  font-size: 0.75em;
+}
+
+.location-display .coords .latitude .polarity.positive {
+  color: green;
+}
+
+.location-display .coords .latitude .polarity.positive::after {
+  content: "↑";
+}
+
+.location-display .coords .latitude .polarity.negative {
+  color: purple;
+}
+
+.location-display .coords .latitude .polarity.negative::after {
+  content: "↑";
+}
+
+.location-display .coords .longitude .polarity.positive {
+  color: blue;
+}
+
+.location-display .coords .longitude .polarity.positive::after {
+  content: "→";
+}
+
+.location-display .coords .longitude .polarity.negative {
+  color: coral;
+}
+
+.location-display .coords .longitude .polarity.negative::after {
+  content: "←";
+}
+
+
+.seconds, .minutes {
+  opacity: 0.8;
+}
+
+.large {
+  font-size: 1.125em;
+}
+
+.small {
+  font-size: 0.88889em;
+}
+
+.main-section > section {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.main-section .row {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-section button sup {
+  text-transform: lowercase;
+}
+
+.main-section .row button sup,
+.main-section .row button strong {
+  display: block;
+}
+
+.main-section .vertical button > strong:first-child {
+  transform: scale(1.25);
+}
+
+.main-section .row button {
+  min-width: 2em;
+  padding: 0 0.25em;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-section .row > div.MuiFormControl-root {
+  margin: 0 0.5em;
+  width: 10em;
+}
+
+.main-section .vertical button {
+  flex-flow: column nowrap;
+  min-width: 2em;
+  max-height: 4.125em;
+  padding: 0 0.25em;
+  margin: 0 0.125em;
+}
+
+.main-section .row.update-controls button {
+  min-width: 3em;
+  padding: 0 0.5em;
+  height: 4.125em;
+}
+
+.moon-phase-display li > strong {
+  color: gray;
+}
+
+.main-section button strong {
+  font-size: 1.5em;
+}
+
+.labelled-list > li strong {
+  font-size: 0.75em;
+  text-align: right;
+  margin-right: 0.5em;
+}
+
+.labelled-list > li em,
+.labelled-list > li strong {
+  display: inline-block;
+}
+
+.labelled-list > li > em {
+  width: 12em;;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.labelled-list li::before {
+  position: relative;
+  display: inline-block;
+  content: " ";
+  width: 2em;
+  font-size: 1.25em;
+  margin-right: 0.5em;
+}
+
+.moon-phase-display li.q-1::before {
+  content: "🌑";
+}
+
+.moon-phase-display li.q-2::before {
+  content: "🌓";
+}
+
+.moon-phase-display li.q-3::before {
+  content: "🌕";
+}
+
+.moon-phase-display li.q-4::before {
+  content: "🌗";
+}
+
+.bodies-display li.body-me::before {
+  content: "☿";
+}
+
+.bodies-display li.body-ve::before {
+  content: "♀";
+}
+
+.bodies-display li.body-ma::before {
+  content: "⚦";
+}
+
+.bodies-display li.body-ju::before {
+  content: "♃";
+}
+
+.bodies-display li.body-sa::before {
+  content: "♄";
+}
+
+.bodies-display li.body-ur::before {
+  content: "♅";
+}
+
+.bodies-display li.body-ne::before {
+  content: "♆";
+}
+
+.bodies-display li.body-pl::before {
+  content: "♇";
+}
+
+.bodies-display li.body-me::before {
+  color: gold;
+}
+
+.bodies-display li.body-ve::before {
+  color: blue;
+}
+
+.bodies-display li.body-ma::before {
+  color: red;
+}
+
+.bodies-display li.body-ju::before {
+  color: purple;
+}
+
+.bodies-display li.body-sa::before {
+  color: brown;
+}
+
+.bodies-display li.body-ur::before {
+  color: cyan;
+}
+
+.bodies-display li.body-pl::before {
+  color: turquoise;
+  color: gray;
+}
+
+.main-section .numbers > .row {
+  margin: auto;
+  margin-bottom: 0.5em;
 }
