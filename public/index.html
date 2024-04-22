@@ -13,17 +13,33 @@
     <link rel="icon" type="image/png" sizes="16x16" href="https://www.multifaceted.info/static/favicons/favicon-16x16.png">
     <link rel="manifest" href="https://www.multifaceted.info/static/favicons/site.webmanifest">
     <link rel="mask-icon" href="https://www.multifaceted.info/static/favicons/safari-pinned-tab.svg" color="#5bbad5">
-    <title>Multifaceted Web Services: GoeFinder</title>
+    <title>Multifaceted Web Services: GeoFinder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     <style>
       @keyframes intro {
         from {
-          background-color: black;
-          color: black;
+          opacity: 1;
         }
         to {
-          background-color: white;
-          color: black;
+          opacity: 0;
         }
+      }
+
+      .intro-overlay {
+        background-color: white;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        animation-name: intro;
+        animation-duration: 2000ms;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+        pointer-events: none;
+        z-index: 1;
       }
 
       body {
@@ -31,7 +47,15 @@
         margin: 0 auto;
         text-align: center;
         box-sizing: border-box;
-        animation: intro 1000ms;
+        font-family: "Nunito", sans-serif;
+        font-optical-sizing: auto;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body,
+        .intro-overlay {
+          background-color: black;
+        }
       }
 
       #root, .App {
@@ -51,7 +75,7 @@
         <main class="main-section"></main>
       </div>
     </div>
-    
+    <div class="intro-overlay"></div>
 
   </body>
 </html>

@@ -8,6 +8,21 @@ body {
   box-sizing: border-box;
 }
 
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: black;
+  }
+
+  .MuiDialog-container,
+  .base-Popper-root,
+  .footer p,
+  .main-section {
+    filter: invert(1);
+  }
+  .main-section .labelled-list li::before {
+    filter: invert(1);
+  }
+}
 
 .App {
   text-align: center;
@@ -144,7 +159,7 @@ body {
 }
 
 .labelled-list li > strong:first-child {
-  width: 8em;
+  width: 6rem;
   margin-right: 0.25em;
 }
 
@@ -211,6 +226,7 @@ body {
   padding: 5rem 0.5em 1em 0.5em;
   background-color: rgba(255,255,255, 0.66667);
   min-height: calc(100vh - 5rem);
+  z-index: 2;
 }
 
 @media (min-width: 480px) and (min-height: 480px){
@@ -448,62 +464,41 @@ body {
 
 .bodies-display li.body-me::before {
   content: "☿";
-}
-
-.bodies-display li.body-ve::before {
-  content: "♀";
-}
-
-.bodies-display li.body-ma::before {
-  content: "⚦";
-}
-
-.bodies-display li.body-ju::before {
-  content: "♃";
-}
-
-.bodies-display li.body-sa::before {
-  content: "♄";
-}
-
-.bodies-display li.body-ur::before {
-  content: "♅";
-}
-
-.bodies-display li.body-ne::before {
-  content: "♆";
-}
-
-.bodies-display li.body-pl::before {
-  content: "♇";
-}
-
-.bodies-display li.body-me::before {
   color: gold;
 }
 
 .bodies-display li.body-ve::before {
+  content: "♀";
   color: blue;
 }
 
 .bodies-display li.body-ma::before {
+  content: "⚦";
   color: red;
 }
 
 .bodies-display li.body-ju::before {
-  color: purple;
+  content: "♃";
+  color: orange;
 }
 
 .bodies-display li.body-sa::before {
-  color: brown;
+  content: "♄";
+  color: lightcoral;
 }
 
 .bodies-display li.body-ur::before {
+  content: "♅";
   color: cyan;
 }
 
-.bodies-display li.body-pl::before {
+.bodies-display li.body-ne::before {
+  content: "♆";
   color: turquoise;
+}
+
+.bodies-display li.body-pl::before {
+  content: "♇";
   color: gray;
 }
 

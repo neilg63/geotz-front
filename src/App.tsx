@@ -173,7 +173,7 @@ function App() {
         </section>}
       </main>
       <footer className='footer'>
-        <p className='copyright'><strong>©</strong><span>copyright:</span> <a href="https://www.multifaceted.info" target='_blank' rel="noreferrer">Multifaceted Web Services</a></p>
+        <p className='copyright'><strong>©</strong><span>2024</span> <a href="https://www.multifaceted.info" target='_blank' rel="noreferrer">Multifaceted Web Services</a></p>
       </footer>
     </div>
   );
