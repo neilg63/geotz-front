@@ -82,10 +82,10 @@ function App() {
             const { time, place, astro } = data;
             if (time) {
               ti = new TimeZoneInfo(time);
-
-            if (astro instanceof Object) {
-              setAstro(new AstroData(astro, ti.utcOffset));
-            }
+              if (astro instanceof Object) {
+                console.log(ti.utcOffset)
+                setAstro(new AstroData(astro, ts, ti.utcOffset));
+              }
             }
             if (place instanceof Object && fullMode) {
               setPlaceInfo(new PlaceInfo(place));
@@ -117,7 +117,7 @@ function App() {
         return true;
       });
     }
-  }, [fetchAstroData]);
+  }, [fetchAstroData, ts]);
 
   const updateCurrentDt = () => {
     const jDate = currentJulianDate();

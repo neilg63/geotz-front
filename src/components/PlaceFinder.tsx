@@ -21,7 +21,6 @@ export default function PlaceFinder({onChange, current}: {onChange: Function, cu
         (input) => {
           const inputText = typeof input === 'string' ? input.trim() : ''
           if (inputText.length > 1) {
-            console.log(input)
             searchLocation(input).then((results:PlaceRow[]) => {
               
               if (results instanceof Array) {
@@ -38,7 +37,6 @@ export default function PlaceFinder({onChange, current}: {onChange: Function, cu
   const fetchOptions = (input: any = null) => {
     const inputText = typeof input === 'string' ? input.trim() : ''
     if (inputText.length > 1) {
-      console.log(input)
       searchLocation(input).then((results:PlaceRow[]) => {
         if (results instanceof Array) {
           setOptions(results)

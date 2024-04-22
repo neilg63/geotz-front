@@ -1,6 +1,5 @@
 import {
   CoordsDisplay,
-  decDegToDms,
   decDegToDmsStrings,
   degAsDms,
   sanitize,
@@ -550,9 +549,11 @@ export class Sun extends AstroObject {
   ic = 0;
   min = 0;
   max = 0;
+  offset = 0;
 
-  constructor(inData: any = null) {
+  constructor(inData: any = null, offset = 0) {
     super(inData);
+    this.offset = offset;
     if (inData instanceof Object) {
       Object.entries(inData).forEach(([key, val]) => {
         switch (key) {
@@ -573,7 +574,7 @@ export class Sun extends AstroObject {
 
   get riseTime(): string {
     if (this.max >= 0) {
-      return unixTimeToJulDate(this.rise).hms;
+      return unixTimeToJulDate(this.rise, this.offset).hms;
     } else {
       return `down all day`;
     }
@@ -604,14 +605,14 @@ export class Sun extends AstroObject {
   }
 
   get highestPoint(): string {
-    const mcTime = unixTimeToJulDate(this.mc).hms;
+    const mcTime = unixTimeToJulDate(this.mc, this.offset).hms;
     const degs = degAsDms(this.mc, 'raw');
     return `${degs}, ${mcTime}`
   }
 
   get setTime(): string {
     if (this.min < 0) {
-      return unixTimeToJulDate(this.set).hms;
+      return unixTimeToJulDate(this.set, this.offset).hms;
     } else {
       return `up all day`;
     }
@@ -626,7 +627,7 @@ export class Sun extends AstroObject {
   }
 
   get lowestPoint(): string {
-    const mcTime = unixTimeToJulDate(this.ic).hms;
+    const mcTime = unixTimeToJulDate(this.ic, this.offset).hms;
     const degs = degAsDms(this.ic, 'raw');
     return `${degs}, ${mcTime}`;
   }
@@ -733,10 +734,14 @@ export class AstroData {
   ascendant = new AstroObject();
   sun = new Sun();
   moon = new Moon();
+  ts = 0;
   offset = 0;
 
   constructor(inData: any = null, ts = 0, offset = 0) {
+    this.offset = offset;
+      this.ts = ts;
     if (inData instanceof Object) {
+      
       const { start, end, time, sun, moon, ascendant } = inData;
       if (typeof start === 'number') {
         this.start = start;
@@ -747,10 +752,13 @@ export class AstroData {
       if (typeof end === 'number') {
         this.end = end;
       }
-      this.sun = new Sun(sun);
+      this.sun = new Sun(sun, this.offset);
       this.moon = new Moon(moon, this.time);
       this.ascendant = new AstroObject(ascendant);
     }
+  }
+
+  setOffset(offset = 0) {
     this.offset = offset;
   }
 
