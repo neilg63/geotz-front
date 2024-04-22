@@ -213,6 +213,12 @@ body {
   min-height: calc(100vh - 5rem);
 }
 
+@media (min-width: 480px) and (min-height: 480px){
+  .main-section {
+    padding-top: 7.5rem;
+  }
+}
+
 .main-section h4,
 .main-section h3 {
   margin: 0 auto;
@@ -237,7 +243,7 @@ body {
 }
 
 .location-display {
-  min-height: 2em;
+  min-height: 3em;
 }
 
 .location-display .coords {
