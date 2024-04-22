@@ -1,4 +1,5 @@
 import { toThousands } from "./converters";
+import { DateDisplay } from "./interfaces";
 
 export const epoch = {
   days: 2440587.5, // ref year in julian displaySnippets
@@ -603,6 +604,24 @@ export const roundFloat5 = (jd = 0) => {
 
 export const minJd = () => {
   return epoch.days - (365.25 * 4000);
+}
+
+export const initDateParts = (): DateDisplay => {
+  const [date, timePart] = new Date().toISOString().split("T");
+  let time = "00:00";
+  let seconds = "00";
+  if (typeof timePart === "string") {
+    const tParts = timePart.split(":");
+    if (tParts.length > 2) {
+      time = [tParts[0], tParts[1]].join(":");
+      seconds = tParts[2].split(".").shift() as string;
+    }
+  }
+  return {
+    date,
+    time,
+    seconds
+  }
 }
 
 export const MAX_UNIX = 4102444800000;

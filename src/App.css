@@ -5,6 +5,7 @@ body {
   background-attachment: fixed;
   background-position: center center;
   background-color: white;
+  box-sizing: border-box;
 }
 
 
@@ -20,9 +21,23 @@ body {
   width: 100%;
   border-bottom: solid 3px orange;
 }
+
+.App header h1 a {
+  display: inline-block;
+  position: relative;
+  color: white;
+  text-decoration: none;
+}
+
+
+
 .App header h1 span {
   display: inline-block;
   position: relative;
+}
+
+.App header h1 a:hover {
+  transform: skew(-10deg);
 }
 
 .App header h1 .green {
@@ -93,6 +108,12 @@ body {
   justify-content: center;
   font-size: calc(0.5em + 2vmin);
   color: white;
+  border-bottom: sold 3px rgba(255, 102, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
 }
 
 .App-link {
@@ -187,7 +208,7 @@ body {
 
 .main-section {
   margin: 0 auto;
-  padding: 0 0.5em;
+  padding: 5rem 0.5em 1em 0.5em;
   background-color: rgba(255,255,255, 0.66667);
   min-height: calc(100vh - 5rem);
 }
@@ -483,4 +504,39 @@ body {
 .main-section .numbers > .row {
   margin: auto;
   margin-bottom: 0.5em;
+}
+
+.footer {
+  width: 90%;
+  padding: 1em 5%;
+  min-height: 3em;
+  margin: 0 auto;
+  border-top: solid 3px orange;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.footer p {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  text-align: center;
+}
+
+.footer p.copyright a,
+.footer p.copyright span,
+.footer p.copyright strong {
+  display: inline-block;
+}
+
+.footer p.copyright strong {
+  margin-right: 0.5em;
+  transform: scale(1.5);
+  color: orange;
+}
+
+.footer p.copyright span {
+  margin-right: 0.25em;
 }

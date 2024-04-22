@@ -9,7 +9,7 @@ import { AstroData, BodySet, GeoLoc, PlaceInfo, TimeZoneInfo } from './api/model
 import LocationDisplay from './components/LocationDisplay';
 import TimeInfo from './components/TimeInfo';
 import { notEmptyString, zeroPad2 } from './api/utils';
-import { currentJulianDate, } from './api/julian-date';
+import { currentJulianDate, initDateParts, } from './api/julian-date';
 import { currentUtcDateString } from './api/julian-date';
 import BodiesDisplay from './components/BodiesDisplay';
 import AstroDisplay from './components/AstroDisplay';
@@ -18,7 +18,8 @@ import { toLocal } from './lib/localstore';
 
 function App() {
   const [geo, setGeo] = useState( new GeoLoc());
-  const [currentDtDisplay, setCurrentDtDisplay] = useState({date: "", time: "", seconds: ""})
+  const initDateDisplay = initDateParts();
+  const [currentDtDisplay, setCurrentDtDisplay] = useState(initDateDisplay)
   const [currentGeo, setCurrentGeo] = useState( new GeoLoc());
   const [astro, setAstro] = useState(new AstroData());
   const [isCurrent, setIsCurrent] = useState(true)
@@ -146,10 +147,12 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>
+        <h1 title="Developed by Multifaceted Web Services">
+          <a href="https://www.multifaceted.info" target='_blank' rel="noreferrer">
           <span className="green">Geo</span>
           <span className="mid">Time</span>
           <span className="orange">Zone</span>
+          </a>
         </h1>
         <Tooltip title={currentGeo.toDisplay()}>
         <h3>
@@ -158,7 +161,6 @@ function App() {
         </Tooltip>
       </header>
       <main className="main-section">
-        
           <LocationDisplay info={placeInfo} />
           <PlaceFinder onChange={(row: PlaceRow) => loadLocation(row)} current={currentPlaceInfo}/>
           <Converter onUpdate={(row: any = null) => loadLocation(row)} geo={geo} />
@@ -170,6 +172,9 @@ function App() {
             </>}
         </section>}
       </main>
+      <footer className='footer'>
+        <p className='copyright'><strong>©</strong><span>copyright:</span> <a href="https://www.multifaceted.info" target='_blank' rel="noreferrer">Multifaceted Web Services</a></p>
+      </footer>
     </div>
   );
 }
