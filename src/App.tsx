@@ -83,7 +83,6 @@ function App() {
             if (time) {
               ti = new TimeZoneInfo(time);
               if (astro instanceof Object) {
-                console.log(ti.utcOffset)
                 setAstro(new AstroData(astro, ts, ti.utcOffset));
               }
             }
