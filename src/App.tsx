@@ -80,11 +80,12 @@ function App() {
           const parseAsFull = keys.includes('time')
           if (parseAsFull) {
             const { time, place, astro } = data;
-            if (astro instanceof Object) {
-              setAstro(new AstroData(astro));
-            }
             if (time) {
               ti = new TimeZoneInfo(time);
+
+            if (astro instanceof Object) {
+              setAstro(new AstroData(astro, ti.utcOffset));
+            }
             }
             if (place instanceof Object && fullMode) {
               setPlaceInfo(new PlaceInfo(place));
