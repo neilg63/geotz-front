@@ -546,3 +546,12 @@ body {
 .footer p.copyright span {
   margin-right: 0.25em;
 }
+
+#place-name-search il {
+  text-align: left;
+  max-height: 1.25em;
+}
+
+#place-name-search li svg {
+  transform: scale(0.75);
+}
