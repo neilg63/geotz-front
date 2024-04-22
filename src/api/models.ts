@@ -606,8 +606,8 @@ export class Sun extends AstroObject {
 
   get highestPoint(): string {
     const mcTime = unixTimeToJulDate(this.mc, this.offset).hms;
-    const degs = degAsDms(this.mc, 'raw');
-    return `${degs}, ${mcTime}`
+    const degs = degAsDms(this.max, 'raw');
+    return `${mcTime} (${degs})`
   }
 
   get setTime(): string {
@@ -628,8 +628,8 @@ export class Sun extends AstroObject {
 
   get lowestPoint(): string {
     const mcTime = unixTimeToJulDate(this.ic, this.offset).hms;
-    const degs = degAsDms(this.ic, 'raw');
-    return `${degs}, ${mcTime}`;
+    const degs = degAsDms(this.min, 'raw');
+    return `${mcTime} (${degs})`;
   }
 
 }
