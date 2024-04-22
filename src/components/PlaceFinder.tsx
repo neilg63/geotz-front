@@ -78,7 +78,7 @@ export default function PlaceFinder({onChange, current}: {onChange: Function, cu
         const itemKey = [option.lat, option.lng].join('/');
         return (
           <li {...props} key={itemKey}>
-            <Grid container alignItems="center">
+            <Grid container alignItems="flex-start">
               <Grid item sx={{ width: 'calc(100% - 1em)', wordWrap: 'break-word' }}>
               <LocationOnIcon sx={{ color: 'text.secondary' }} />
                 <Box

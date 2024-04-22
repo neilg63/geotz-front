@@ -547,11 +547,12 @@ body {
   margin-right: 0.25em;
 }
 
-#place-name-search il {
+.base-Popper-root li {
   text-align: left;
-  max-height: 1.25em;
+  padding: 0;
+  margin: 0;
 }
 
-#place-name-search li svg {
-  transform: scale(0.75);
+.base-Popper-root li svg {
+  transform: scale(0.75) translate(-25%, 15%);
 }
