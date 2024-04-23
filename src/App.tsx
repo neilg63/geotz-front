@@ -207,15 +207,26 @@ function App() {
           <CloseOutlined onClick={() => hideHelp()} className="close" />
           <div className='inner scrollable'>
             <div className='content'>
-              <h4>Enable geolocation in your browser</h4>
-              <p>The app needs access to your current location to fetch the correct time zone information, sunrise and sunset times, moon phases, ascendant and projected planetary positions</p>
-              <h4>Search other towns and cities</h4>
-              <p>The auto-complete lookup uses a custom Web service to match strategic towns and cities (over 40,000) around the world with the correct time-zone location.</p>
-              <h4>Select a different time and date</h4>
-              <p>The date and time field opens a mobile-friendly date and time picker. Press the <em>update</em> button to fetch matchning data.</p>
-              <h4>Convert between Unix and Julian days</h4>
-              <p>Many Web applications use Unix time, the number of seconds since the start of 1st January 1970, UTC. This will be the same all time zones. Negatives values represent dates before 1970. With signed 64-bit integers, we will have no problems representing dates after 2038.</p>
-              <p>Many astronomical applications use Julian days, i.e. the numbers since since 12 noon, 24th November 4713 BCE.</p>
+              <ol>
+                <li>
+                  <h4>Enable geolocation in your browser</h4>
+                  <p>The app needs access to your current location to fetch the correct time zone information, sunrise and sunset times, moon phases, ascendant and projected planetary positions</p>
+                </li>
+                <li>
+                <h4>Search other towns and cities</h4>
+                  <p>The auto-complete lookup uses a custom Web service to match strategic towns and cities around the world (over 40,000) with the correct time-zone location.</p>
+                </li>
+                <li>
+                <h4>Select a different time and date</h4>
+                  <p>The date and time field opens a mobile-friendly date and time picker. Press the <em>update</em> button to fetch matching data.</p>
+                  <p>To show current results, press the <em>reset</em> button</p>
+                </li>
+                <li>
+                  <h4>Convert from and to Unix and Julian days</h4>
+                  <p>Many Web applications use Unix time, the number of seconds since the start of 1st January 1970, UTC. This will be the same all time zones. Negatives values represent dates before 1970. With signed 64-bit integers, we will have no problems representing dates after 2038.</p>
+                  <p>Many astronomical applications use Julian days, i.e. the numbers since since 12 noon, 24th November 4713 BCE.</p>
+                </li>
+              </ol>
             </div>
           </div>
       </aside>
