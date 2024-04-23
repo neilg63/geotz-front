@@ -4,7 +4,8 @@ import { AstroData } from '../api/models';
 export default function AstroDisplay({info}: {info: AstroData}) {
   const moonPhases = info.moonPhases();
   return (
-    <section className="sun-moon-ascendant">
+    <>
+      <div className="subsection sun-wrapper">
       <h3 className="body-su">Sun</h3>
       <dl className="twin-grid">
         <dt>Longitude</dt>
@@ -30,6 +31,17 @@ export default function AstroDisplay({info}: {info: AstroData}) {
           {info.sun.lowestPoint}
         </dd>
       </dl>
+      </div>
+    <div className='subsection ascendant-wrapper'>
+      <h3 className="body-mo">Ascendant</h3>
+      <dl className="twin-grid">
+          <dt>Longitude</dt>
+          <dd>
+            {info.currentAscPos()}
+          </dd>
+        </dl>
+    </div>
+      <div className='subsection moon-wrapper'>
       <h3 className="body-mo">Moon</h3>
       <dl className="twin-grid">
         <dt>Longitude</dt>
@@ -41,7 +53,7 @@ export default function AstroDisplay({info}: {info: AstroData}) {
           {info.moon.currentPhase}
         </dd>
       </dl>
-      <ul className="labelled-list moon-phase-display">
+      <ul className="subsection labelled-list moon-phase-display">
       {info.valid && <>
         {moonPhases.map(item => <li key={item.key} className={item.className}>
           <strong>{item.text}</strong>
@@ -49,14 +61,7 @@ export default function AstroDisplay({info}: {info: AstroData}) {
         </li>)}
       </>}
     </ul>
-
-    <h3 className="body-mo">Ascendant</h3>
-    <dl className="twin-grid">
-        <dt>Longitude</dt>
-        <dd>
-          {info.currentAscPos()}
-        </dd>
-      </dl>
-    </section>
+    </div>
+    </>
   );
 }

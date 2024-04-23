@@ -27,7 +27,7 @@ export default function LocationDisplay({info, ts, isCurrent}: {info: TimeZoneIn
     updateTs();
   }, [isCurrent,updateTs])
   return (
-    <>
+    <div className="subsection time-info-wrapper">
       <dl className={wrapperClasses}>
       {info.valid && <>
         <dt>UTC offset</dt><dd>
@@ -66,6 +66,6 @@ export default function LocationDisplay({info, ts, isCurrent}: {info: TimeZoneIn
         </>}
       </dl>
     </>}
-    </>
+    </div>
   );
 }

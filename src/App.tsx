@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Tooltip from '@mui/material/Tooltip';
+import HelpOutline from '@mui/icons-material/HelpOutline';
+import CloseOutlined from '@mui/icons-material/CloseOutlined';
 import './App.css';
 import { fetchAstroPositions, fetchTz } from './api/fetch';
 import PlaceFinder from './components/PlaceFinder';
@@ -17,6 +19,7 @@ import Converter from './components/Converter';
 import { toLocal } from './lib/localstore';
 
 function App() {
+  const [wrapperClassNames, setWrapperClassNames] = useState('App');
   const [geo, setGeo] = useState( new GeoLoc());
   const initDateDisplay = initDateParts();
   const [currentDtDisplay, setCurrentDtDisplay] = useState(initDateDisplay)
@@ -40,13 +43,28 @@ function App() {
         if (date instanceof Object) {
           const ts = date.unix? date.unix as number : 0;
           if (longitudes instanceof Object) {
+            setExtraLoaded(false);
             setBodySet(new BodySet(longitudes, ts, utcOffset));
-            setExtraLoaded(true);
+            setTimeout(() => {
+              setExtraLoaded(true);
+            }, 250);
           }
         }
       }
     })
   }, []); 
+
+  const toggleHelp = () => {
+    const cls = ['App'];
+    if (wrapperClassNames.includes('show-help') === false) {
+      cls.push('show-help')
+    }
+    setWrapperClassNames(cls.join(' '));
+  }
+
+  const hideHelp = () => {
+    setWrapperClassNames('App');
+  }
 
   const loadLocation = useCallback((inData: ParamSet, current = false) => {
     const valid = inData instanceof Object;
@@ -72,7 +90,6 @@ function App() {
       }
       const dt = notEmptyString(inData.dt) ? inData.dt : currentUtcDateString();
       setInfoLoaded(false);
-      setExtraLoaded(false);
       fetchTz(dt, geo.toString(), true).then((data: any) => { 
         let ti: TimeZoneInfo | undefined = undefined;
         if (data instanceof Object) {
@@ -104,7 +121,7 @@ function App() {
               if (ti) {
                 fetchAstroData(geo, dt, ti?.utcOffset);
               }
-            }, 1000);
+            }, 200);
             setInfoLoaded(true);
             if (current) {
               setCurrentGeo(geo);
@@ -141,11 +158,19 @@ function App() {
           loadLocation(result, true);
         }
       });
+
+      window.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.code) {
+          const kc = e.code.toLowerCase();
+          if (kc === 'escape') {
+            hideHelp();
+          }
+        }
+      });
     }
   }, [hasFetchedGeoTime,loadLocation]);
-  
   return (
-    <div className="App">
+    <div className={wrapperClassNames}>
       <header className="App-header">
         <h1 title="Developed by Multifaceted Web Services">
           <a href="https://www.multifaceted.info" target='_blank' rel="noreferrer">
@@ -159,11 +184,14 @@ function App() {
             <span className='date'>{currentDtDisplay.date}</span><time className='hours-minutes'>{currentDtDisplay.time}</time><em className='seconds'>{currentDtDisplay.seconds}</em>
         </h3>
         </Tooltip>
+        <HelpOutline onClick={() => toggleHelp()} className="toggle-help"/>
       </header>
       <main className="main-section">
-          <LocationDisplay info={placeInfo} />
-          <PlaceFinder onChange={(row: PlaceRow) => loadLocation(row)} current={currentPlaceInfo}/>
-          <Converter onUpdate={(row: any = null) => loadLocation(row)} geo={geo} />
+          <section className="controls-wrapper">
+            <LocationDisplay info={placeInfo} />
+            <PlaceFinder onChange={(row: PlaceRow) => loadLocation(row)} current={currentPlaceInfo}/>
+            <Converter onUpdate={(row: any = null) => loadLocation(row)} geo={geo} />
+          </section>
           {infoLoaded && <section className='inner'>
             <TimeInfo info={timeInfo} ts={ts} isCurrent={isCurrent} />
             <AstroDisplay info={astro} />
@@ -175,6 +203,22 @@ function App() {
       <footer className='footer'>
         <p className='copyright'><strong>©</strong><span>2024</span> <a href="https://www.multifaceted.info" target='_blank' rel="noreferrer">Multifaceted Web Services</a></p>
       </footer>
+      <aside className="help">
+          <CloseOutlined onClick={() => hideHelp()} className="close" />
+          <div className='inner scrollable'>
+            <div className='content'>
+              <h4>Enable geolocation in your browser</h4>
+              <p>The app needs access to your current location to fetch the correct time zone information, sunrise and sunset times, moon phases, ascendant and projected planetary positions</p>
+              <h4>Search other towns and cities</h4>
+              <p>The auto-complete lookup uses a custom Web service to match strategic towns and cities (over 40,000) around the world with the correct time-zone location.</p>
+              <h4>Select a different time and date</h4>
+              <p>The date and time field opens a mobile-friendly date and time picker. Press the <em>update</em> button to fetch matchning data.</p>
+              <h4>Convert between Unix and Julian days</h4>
+              <p>Many Web applications use Unix time, the number of seconds since the start of 1st January 1970, UTC. This will be the same all time zones. Negatives values represent dates before 1970. With signed 64-bit integers, we will have no problems representing dates after 2038.</p>
+              <p>Many astronomical applications use Julian days, i.e. the numbers since since 12 noon, 24th November 4713 BCE.</p>
+            </div>
+          </div>
+      </aside>
     </div>
   );
 }
