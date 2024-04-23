@@ -174,7 +174,7 @@ export const fetchAstroPositions = async (
     return stored.data
   } else {
     clearLocal(ck);
-    params.bodies = 'ma,me,ju,ve,sa,ur,ne,pl';
+    params.bodies = 'me,ve,ma,ju,sa,ur,ne,pl';
     const data = await fetchContentAstro("positions", params);
     if (data instanceof Object && data.longitudes instanceof Object) {
       toLocal(ck, data);

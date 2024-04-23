@@ -18,6 +18,10 @@ export const bodies: KeyName[] = [
     name: "Mercury"
   },
   {
+    key: "ve",
+    name: "Venus"
+  },
+  {
     key: "ma",
     name: "Mars"
   },
