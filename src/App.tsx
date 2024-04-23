@@ -223,7 +223,7 @@ function App() {
                 </li>
                 <li>
                   <h4>Convert from and to Unix and Julian days</h4>
-                  <p>Many Web applications use Unix time, the number of seconds since the start of 1st January 1970, UTC. This will be the same all time zones. Negatives values represent dates before 1970. With signed 64-bit integers, we will have no problems representing dates after 2038.</p>
+                  <p>Many Web applications use Unix time, the number of seconds since the start of 1st January 1970, UTC. Unix timestamps are the same in all time zones. Negative values represent dates before 1970. With signed 64-bit integers, we will have no problems representing dates after 2038.</p>
                   <p>Many astronomical applications use Julian days, i.e. the numbers since since 12 noon, 24th November 4713 BCE.</p>
                 </li>
               </ol>
